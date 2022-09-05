@@ -6,16 +6,16 @@ namespace MatchPicture.Scene.Gameplay.Inputs
 {
     public class InputRaycast : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private Camera _cam;
+
+        private void Update()
         {
+            if(Input.GetMouseButtonDown(0))
+            {
+                RaycastHit2D hit = Physics2D.Raycast(_cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+                if (hit.collider == null) return;
+            }
         }
     }
 }

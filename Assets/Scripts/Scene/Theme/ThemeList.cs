@@ -7,9 +7,9 @@ namespace MatchPicture.Scene.Theme
 {
     public class ThemeList : MonoBehaviour
     {
-        [SerializeField] private List<ThemeData> _themeData = new List<ThemeData>();
         [SerializeField] private Sprite[] _sprite;
 
+        private ThemeDatabase _themeData;
         private SaveData _saveData;
         private Currency _currency;
         private int _avaiableTheme;
@@ -21,8 +21,9 @@ namespace MatchPicture.Scene.Theme
         {
             _saveData = SaveData.saveInstance;
             _currency = Currency.currencyInstance;
+            _themeData = ThemeDatabase.themeInstance;
 
-            _sprite = _themeData[_saveData.CurrentTheme].Sprites;
+            _sprite = _themeData.ThemeDatas[_saveData.CurrentTheme].Sprites;
             
         }
 
@@ -36,7 +37,7 @@ namespace MatchPicture.Scene.Theme
         {
             if (index + 1 <= _avaiableTheme)
             {
-                _sprite = _themeData[index].Sprites;
+                _sprite = _themeData.ThemeDatas[index].Sprites;
                 _saveData.UpdateTheme(index);
             }
             else
@@ -48,13 +49,13 @@ namespace MatchPicture.Scene.Theme
 
         public void PurchaseTheme(int selectedIndex)
         {
-            int price = _themeData[selectedIndex].Price;
+            int price = _themeData.ThemeDatas[selectedIndex].Price;
 
             if(_avaiableGold >= price)
             {
                 _saveData.BuyTheme(selectedIndex + 1);
                 _currency.SpendGold(price);
-                _sprite = _themeData[selectedIndex].Sprites;
+                _sprite = _themeData.ThemeDatas[selectedIndex].Sprites;
                 _saveData.UpdateTheme(selectedIndex);
             }
             else

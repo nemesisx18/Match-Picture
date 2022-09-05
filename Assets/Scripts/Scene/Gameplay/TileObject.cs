@@ -7,16 +7,13 @@ namespace MatchPicture.Scene.Gameplay.Tile
 
     public class TileObject : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        private Sprite _sprite;
+        [SerializeField] private SpriteRenderer _renderer;
+        
+        public void ChangeSprite(Sprite sprite)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            _sprite = sprite;
+            _renderer.sprite = _sprite;
         }
     }
 }

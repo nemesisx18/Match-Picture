@@ -26,7 +26,8 @@ namespace MatchPicture.Scene.Gameplay.Timer
         {
             if (timerIsRunning)
             {
-                timeText.text = _time.ToString();
+                float seconds = Mathf.FloorToInt(_time % 300);
+                timeText.text = string.Format("{0:00}s", seconds);
                 if (_time > 0)
                 {
                     _time -= Time.deltaTime;
