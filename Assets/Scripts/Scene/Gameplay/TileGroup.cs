@@ -37,7 +37,7 @@ namespace MatchPicture.Scene.Gameplay.Tile
             for (int i = 0; i < indexLoop / 2; i++)
             {
                 //loop array sprite
-                if (i < _sprites.Length)
+                if (i <= _sprites.Length)
                 {
                     spawnIndex.Add(_sprites[i]);
                     spawnIndex.Add(_sprites[i]);
